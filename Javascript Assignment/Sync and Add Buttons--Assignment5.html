@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SyncandAdd</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+
+        }
+
+        body{
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(0, 117, 117);
+            align-items: center;
+            justify-content: center;
+            margin-top: 100px;
+
+            
+        }
+        .button{
+            display: flex;
+            background-color: rgba(255, 255, 255, 0.185);
+            width: 400px;
+            height: 200px;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            border-radius: 10px;
+            padding: 30px;
+            border: 2px solid whitesmoke;
+        }
+        input{
+            width: 90px;
+            height: 45px;
+            background-color: rgb(134, 235, 199);
+            border: none;
+            cursor: pointer;
+            box-shadow: inset 1px -1px 3px rgba(0, 0, 0, 0.404),
+                         inset -1px 1px 3px rgba(255, 255, 255);
+        }
+
+        button{
+            width: 110px;
+            height: 65px;
+            background-color: rgb(134, 235, 199);
+            border: none;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 2px -2px 10px rgba(0, 0, 0, 0.375), inset 2px -2px 3px rgba(0, 0, 0, 0.375);
+        }
+    </style>
+</head>
+<body>
+    <div class="req" style="padding-bottom: 30px ; color: white;">
+        <p>Create three buttons with initial values "0" as text and one button as "SyncAndAdd".
+        </p> <br>
+        <p>1: Onclick of any of the three buttons,value of that particular button should be increased by 1. <br> 2: Onclick of SyncAndAdd button : <br> (i) The value of unclicked buttons (among three buttons) should get increased by 1. <br> (ii) If all the three buttons are clicked , the value of oldest (first) clicked button (among three buttons) should get increased by 1.
+        </p>
+    </div>
+
+ <div class="button">   
+<input type="button" id="btn1" value="0" name="button1" onclick="Button(this.id, this.value)" /> 
+<input type="button" id="btn2" value="0" name="button2" onclick="Button(this.id, this.value)" /> 
+<input type="button" id="btn3" value="0" name="button3" onclick="Button(this.id, this.value)" /> 
+</div>
+</br></br>
+<div><button onclick="Validate()">SyncandAdd</button> </div>
+</form>
+
+
+<script>
+    var temp = 0;
+    var arr = [];
+    function Validate()
+    {
+      if(arr.length == 0)                                           // if no buttons is clicked//
+      {
+                    document.getElementById("btn1").value++;
+                    
+                    document.getElementById("btn1").value = document.getElementById("btn1").value;
+                    document.getElementById("btn2").value = document.getElementById("btn1").value;
+                    document.getElementById("btn3").value = document.getElementById("btn1").value;
+      }
+      else
+      {
+                    if(arr.length==1)                               //if only one button is clicked and two were not//
+                    {
+                        if(arr[0]=="btn1")
+                        {
+                            temp=document.getElementById("btn2").value;
+                            temp++;
+                            document.getElementById("btn2").value = temp;
+                            document.getElementById("btn3").value = temp;
+                        }
+                        else if(arr[0] =="btn2")
+                        {                       
+                            temp=document.getElementById("btn1").value;
+                            temp++;
+                            document.getElementById("btn1").value = temp;
+                            document.getElementById("btn3").value = temp;
+                        }
+                        else if(arr[0]=="btn3")
+                        {
+                            temp=document.getElementById("btn1").value;
+                            temp++;
+                            document.getElementById("btn1").value = temp;
+                            document.getElementById("btn2").value = temp;
+                        }
+                    }
+                    if( arr.length == 2)                            //if two buttons are clicked and one is not//
+                    {
+                        if(arr[0] =="btn1" && arr[1] =="btn2")          //if 1st and 2nd button is clicked//
+                                        {
+                                            temp=document.getElementById("btn3").value;
+                                            temp++;
+                                            document.getElementById("btn3").value = temp;
+                                        }
+                        else if(arr[0] == "btn1" && arr[1]=="btn3")     //if 1st and 3rd button is clicked//
+                                        {
+                                            temp=document.getElementById("btn2").value;
+                                            temp++;
+                                            document.getElementById("btn2").value = temp;
+                                        }
+                        else if(arr[0]=="btn2" && arr[1]=="btn1")       //if 2nd and 1st button is clicked//
+                                        {
+                                            temp=document.getElementById("btn3").value;
+                                            temp++;
+                                            document.getElementById("btn3").value = temp; 
+                                        }
+                        else if(arr[0]=="btn2" && arr[1]=="btn3")       //if 2nd and 3rd button is clicked//
+                                        {
+                                            temp=document.getElementById("btn1").value;
+                                            temp++;
+                                            document.getElementById("btn1").value = temp;
+                                        }
+                        else if(arr[0]=="btn3" && arr[1]=="btn1" )      //if 3rd and 1st button is clicked//
+                                        {
+                                            temp=document.getElementById("btn2").value;
+                                            temp++;
+                                            document.getElementById("btn2").value = temp;
+                                        }
+                        else if(arr[0]=="btn3" && arr[1]=="btn2")       //if 3rd and 2nd button is clicked//
+                                        {
+                                            temp=document.getElementById("btn1").value;
+                                            temp++;
+                                            document.getElementById("btn1").value = temp;  
+                                        }
+                    }
+                    if(arr.length == 3)                         //if all the 3 buttons are clicked//
+                    {
+                        temp=document.getElementById(arr[0]).value;
+                        temp++;
+                        document.getElementById(arr[0]).value = temp;
+                    }
+      }
+    }
+    function Button(clicked_id, clicked_value)
+    {
+        temp=document.getElementById(clicked_id).value;
+        temp++;
+        document.getElementById(clicked_id).value=temp;
+                    var n = arr.includes(clicked_id);
+                    if(arr.length <3)
+                    {
+                       if(n == false)
+                       {
+                        arr.push(clicked_id);
+                       }
+                    }
+                    else
+                    {
+                       var index = arr.indexOf(clicked_id);
+                       var rid = arr.splice(index,1).toString();
+                       arr.push(rid);                
+                    } 
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=inpu, initial-scale=1.0">
+    <title>Basic Calculator</title>
+   
+  <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:0,100;0,200;0,300;0,400;0,600;0,800;0,900;1,300;1,800&display=swap');
+
+        *{
+    padding: 0;
+    margin: 0;
+}
+body{
+    
+background: rgb(0, 187, 255);
+background: linear-gradient(170deg, rgba(255,216,117,1) 0%, rgba(255,102,0,1) 100%, rgba(255,156,50,1) 70% );
+    font-family: Poppins;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* padding-top: 30px; */
+    width: auto;
+    height: 100vh;
+}
+
+#result{
+    color: coral;
+    font-size: 16px;
+    width: auto;
+    text-shadow: -5px 2px 10px rgba(0, 0, 0, 0.118);
+    padding-top: 10px;
+    width: 540px;
+    height: 40px;
+    background: rgb(255, 239, 233);
+    border: 2px  solid rgba(255, 111, 0, 0.8);
+    border-radius: 20px;
+    text-align: center;
+    transition: ease-in .2s ;
+}
+#result:hover{
+    font-size: 20px;
+    background: rgb(132, 75, 0);
+    color: white;
+}
+input{
+    width: 200px;
+    height: 50px;
+    margin: 20px 15px 0px 15px ;
+    border-radius: 15px;
+    border: 1px solid rgb(173, 173, 173);
+    padding-left: 10px;
+    transition: ease-in-out, width .35s ease-in-out;
+    background-color: rgb(255, 255, 255);
+    
+}
+
+
+input:focus {
+    outline: 3px solid rgba(255, 127, 80, 0.752);
+    
+  }
+  input:hover {
+    outline: 4px solid rgba(255, 127, 80, 0.752);
+    
+  }
+
+  .container{
+    width: auto;
+    height: auto;    
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(214, 214, 214, 0.6);
+    border: 2px solid white;
+    border-radius: 50px;
+    height: 70vh;
+    width: 60%;
+    
+
+}
+.buttons{
+    width: 500px;
+    height: 170px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+}
+button{
+    width: 150px;
+    height: 70px;
+    border: 2px solid rgba(0, 0, 0, 0.221);
+    box-shadow: 4px 3px 10px rgba(0, 0, 0, 0.23);
+    background: rgb(255,172,55);
+background: radial-gradient(circle, rgba(255,172,55,1) 0%, rgba(255,152,7,1) 100%);
+    border-radius: 5px;
+    font-size: 20px;
+    color: rgb(61, 61, 61);
+    transition: ease-in .1s ;
+}
+button:hover{
+    background: rgb(184, 108, 2);
+background: radial-gradient(circle, rgb(254, 192, 104) 0%, rgb(252, 168, 51)100%);
+font-size: 30px;
+color: white;
+}
+button:active {
+    background: rgb(136, 80, 1);
+background: radial-gradient(circle, rgb(205, 132, 29) 0%, rgb(201, 133, 38)100%);
+font-size: 30px;
+color: rgb(193, 193, 193);
+box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+
+    </style> 
+</head>
+<body>
+    <div class="container">
+    <span style="width: 400px ; height:auto; margin: 20px; text-align: center;"> WAP to create two input boxes. Provide inputs in digits to both the input boxes and perform Add,Sub,Mul,Div and Mod operation.
+    </span>
+
+    <div class="inputbox">
+        <input  id="firstNum" placeholder="Enter 1st Number">
+        <input  id="secondNum" placeholder="Enter 2nd Number">
+    </div>
+    <div class="buttons">
+        <button id="add" onclick="add()">+</button>
+        <button id="sub" onclick="sub()">-</button>
+        <button id="mul" onclick="mul()">x</button>
+        <button id="divi" onclick="div()">/</button>
+        <button id="mod" onclick="div()">%</button>
+        
+    </div>
+    <div id="result"></div>
+</div>
+
+
+<script>
+  const oneNum = document.getElementById('firstNum');
+  const twoNum = document.getElementById('secondNum');
+  const addition = document.getElementById('add');
+  const substract = document.getElementById('sub');
+  const multiply = document.getElementById('mul');
+  const divide = document.getElementById('divi');
+  const modulus = document.getElementById('mod');
+  const resultDiv = document.getElementById('result');
+
+  function calculate(operation) {
+      if (validateInputs()) return;
+
+      let num1 = parseFloat(oneNum.value);
+      let num2 = parseFloat(twoNum.value);
+      let result;
+
+      switch (operation) {
+          case '+':
+              result = num1 + num2;
+              break;
+          case '-':
+              result = num1 - num2;
+              break;
+          case '*':
+              result = num1 * num2;
+              break;
+          case '/':
+              result = num1 / num2;
+              break;
+          case '%':
+              result = num1 % num2;
+              break;
+      }
+
+      resultDiv.textContent = "The result is: " + result;
+  }
+
+  function validateInputs() {
+      let num1 = oneNum.value;
+      let num2 = twoNum.value;
+
+      if (isNaN(num1) || isNaN(num2)) {
+          resultDiv.textContent = 'Please enter valid numbers in both input boxes.';
+          console.log('wrong');
+          return true;
+      }
+      if (num1 === '' || num2 === '') {
+          resultDiv.textContent = 'Please enter a value in both input boxes.';
+          return true;
+      }
+
+      return false;
+  }
+
+  
+
+  addition.addEventListener('click', () => calculate('+'));
+  substract.addEventListener('click', () => calculate('-'));
+  multiply.addEventListener('click', () => calculate('*'));
+  divide.addEventListener('click', () => calculate('/'));
+  modulus.addEventListener('click', () => calculate('%'));
+
+
+
+
+
+ 
+
+
+
+
+    </script>
+</body>
+</html>

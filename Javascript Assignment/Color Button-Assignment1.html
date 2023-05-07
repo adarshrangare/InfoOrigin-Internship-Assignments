@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Change Color</title>
+
+    <style>
+      * {
+        margin: auto;
+        padding: auto;
+      }
+      body {
+        min-height: 100vh;
+
+        display: flex;
+        flex-direction: column;
+        background-color: #fbab7e;
+        background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
+      }
+      .button{
+        
+        height: 100px;
+        width: 300px;
+        border: 0;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.23);
+      }
+      .red {
+        background-color: red;
+        height: 100px;
+        width: 300px;
+        border: 0;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.23);
+      }
+      .yellow {
+        background-color: gold;
+        height: 100px;
+        width: 300px;
+        border: 0;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.23);
+      }
+      .green {
+        background-color: green;
+        height: 100px;
+        width: 300px;
+        border: 0;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.23);
+      }
+      h1 {
+        cursor: pointer;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <p>
+      1.Create three buttons and name it as Red,Green,Yellow respectively.
+      <br />
+      2.Onclick of a particular button, the color of all button should get
+      changed according to its name.
+    </p>
+    <h1 onclick="defaultcolor()">Change Color</h1>
+    <button class="red" id="red" onclick="changecolor(this.id)">Red</button>
+    <button class="green" id="green" onclick="changecolor(this.id)">Green</button>
+    <button class="yellow" id="yellow" onclick="changecolor(this.id)">Yellow</button>
+
+    <script>
+
+      function changecolor(color) {
+       
+        // document.getElementById(color).className = color;
+        document.getElementById("red").className = color;
+        document.getElementById("green").className = color;
+        document.getElementById("yellow").className = color;
+      }     
+        
+      
+      function defaultcolor() {
+        document.getElementById("green").className = "green";
+        document.getElementById("red").className = "red";
+        document.getElementById("yellow").className = "yellow";
+      }
+
+
+    </script>
+  </body>
+</html>

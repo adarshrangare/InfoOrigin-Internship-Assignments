@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rotate Color</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      * {
+        margin: auto;
+        padding: auto;
+      }
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        background-color: #0093e9;
+        background-image: linear-gradient(150deg, #0093e9 10%, #80d0c7 33%);
+        background-size: 150%;
+      }
+      .button {
+        height: 100px;
+        width: 300px;
+        border: 0;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 30px;
+        margin: 0 20px;
+        color: white;
+        box-shadow: -5px 5px 20px rgb(0 0 0 / 40%);
+        text-shadow: -1px 2px 10px rgb(0 0 0 / 50%);
+      }
+
+      .clockwise {
+        background-color: rgb(154, 208, 255);
+        height: 80px;
+        width: 150px;
+        border: 0;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 40px;
+        margin: 20px;
+        box-shadow: -5px 5px 20px rgb(0 0 0 / 40%);
+      }
+      .anticlockwise {
+        background-color: rgb(154, 208, 255);
+        height: 80px;
+        width: 150px;
+        border: 0;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 40px;
+        margin: 20px;
+        box-shadow: -5px 5px 20px rgb(0 0 0 / 40%);
+      }
+    </style>
+  </head>
+  <body>
+    <span style="font-size: 20px; padding-top: -140px; padding-bottom: 40px"
+      >"WAP to create three different colored buttons(BTN1,BTN2,BTN3) and one
+      Rotate button. On click of the Rotate button, color of the buttons should
+      rotate clockwise."
+    </span>
+    <div class="color">
+      <button class="button red" id="red" style="background-color: red">
+        1
+      </button>
+      <button class="button green" id="green" style="background-color: green">
+        2
+      </button>
+      <button class="button yellow" id="yellow" style="background-color: gold">
+        3
+      </button>
+    </div>
+    <div class="rotate">
+      <button class="clockwise" onclick="clockwised ()">
+        <i class="fa fa-repeat" style="opacity: 0.4"></i>
+      </button>
+      <button class="anticlockwise" onclick="anticlockwised ()">
+        <i class="fa fa-undo" style="opacity: 0.4"></i>
+      </button>
+    </div>
+
+    <script>
+
+      
+      const RedButton = document.getElementById("red");
+      const GreenButton = document.getElementById("green");
+      const YellowButton = document.getElementById("yellow");
+      const ClockwiseButton = document.getElementById("clockwise");
+      const AnticlockwiseButton = document.getElementById("anticlockwise");
+
+      function clockwised() {
+        const temp = YellowButton.style.backgroundColor;
+        YellowButton.style.backgroundColor = GreenButton.style.backgroundColor;
+        GreenButton.style.backgroundColor = RedButton.style.backgroundColor;
+        RedButton.style.backgroundColor = temp;
+      }
+      function anticlockwised() {
+        const temp = RedButton.style.backgroundColor;
+        RedButton.style.backgroundColor = GreenButton.style.backgroundColor;
+        GreenButton.style.backgroundColor = YellowButton.style.backgroundColor;
+        YellowButton.style.backgroundColor = temp;
+      }
+    </script>
+  </body>
+</html>
